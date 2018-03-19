@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+PACKAGE = libcedrus
+
+.PHONY: override_dh_strip
+
+override_dh_strip:
+	dh_strip --dbg-package=libcedrus1-dbg
+
+override_dh_auto_install:
+	dh_auto_install -- prefix=/usr libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH)
+
+%:
+	dh $@
